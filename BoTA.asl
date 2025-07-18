@@ -21,5 +21,5 @@ split {
 }
 
 isLoading {
-    return current.levelState == 48;
+    return current.levelState == 48 || current.levelState == 0;
 }
