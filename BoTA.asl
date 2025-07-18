@@ -10,9 +10,9 @@ init {
 update {
     if (current.levelState == 48 && !vars.was48) {
         vars.shouldSplit = true;
-        vars.shouldPause = true;
+        vars.isPaused = true;
     } else if (current.levelState != 48 && vars.was48) {
-        vars.shouldPause = false;
+        vars.isPaused = false;
     } else {
         vars.shouldSplit = false;
     }
@@ -24,6 +24,9 @@ split {
     return vars.shouldSplit;
 }
 
-isGameTimePaused {
-    return vars.shouldPause;
+gameTime {
+    if (vars.isPaused) {
+        return TimeSpan.Zero; // this tells LiveSplit to pause the timer
+    }
+    return null; // resume game time tracking
 }
